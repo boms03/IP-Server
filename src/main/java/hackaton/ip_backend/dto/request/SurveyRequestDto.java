@@ -27,7 +27,7 @@ public class SurveyRequestDto {
         @Schema(name = "ipAmount", description = "베팅 잎", example = "20")
         Long ipAmount;
 
-        @Schema(name = "category", description = "카테고리 선택 (선택안함, 연애, 경제/주식, 스포츠, 일상)", example = "스포츠")
+        @Schema(name = "category", description = "카테고리 선택 NONE(없음), ENTER(연예), ECONOMY(경제/주식), SPORT(스포츠), DAILY(일상)", example = "SPORT")
         String category;
 
 

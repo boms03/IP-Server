@@ -1,5 +1,7 @@
 package hackaton.ip_backend.service.impl;
 
+import hackaton.ip_backend.common.exceptions.BaseException;
+import hackaton.ip_backend.common.response.BaseResponseStatus;
 import hackaton.ip_backend.domain.Member;
 import hackaton.ip_backend.domain.enums.Role;
 import hackaton.ip_backend.dto.request.MemberRequestDto;
@@ -26,6 +28,7 @@ public class MemberServiceImpl implements MemberService {
         String name = signUpDto.getName();
         String email = signUpDto.getEmail();
         String password = signUpDto.getPassword();
+
 
         Member member = Member.builder()
                 .name(name)
