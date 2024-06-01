@@ -2,8 +2,11 @@ package hackaton.ip_backend.domain;
 
 import java.time.LocalDate;
 
+import hackaton.ip_backend.domain.enums.Category;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,8 +33,8 @@ public class Survey extends BaseEntity {
 	@JoinColumn(name = "Member_id", referencedColumnName = "id", nullable = false)
 	private Member member;
 
-	@ManyToOne
-	@JoinColumn(name = "Category_id", referencedColumnName = "id", nullable = false)
+	@Enumerated(EnumType.STRING)
+	@Column(name = "category", nullable = false)
 	private Category category;
 
 	@Column(name = "title", length = 20, nullable = false)
