@@ -76,6 +76,7 @@ public class IfServiceImpl implements IfService {
 		IpDto.SurveyDetailDto dto = IpDto.SurveyDetailDto.builder()
 				.surveyId(entity.getId())
 				.title(entity.getTitle())
+				.content(entity.getContent())
 				.firstOption(entity.getFirstOption())
 				.secondOption(entity.getSecondOption())
 				.endAt(entity.getEndAt())

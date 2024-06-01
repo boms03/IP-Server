@@ -117,6 +117,6 @@ public class IfController {
 
 	private static class SurveyListResponse extends BaseResponse<IpDto.PagingWrapper> {}
 
-	private static class SurveyDetailResponse extends BaseResponse<IpDto.PagingWrapper> {}
+	private static class SurveyDetailResponse extends BaseResponse<IpDto.SurveyDetailDto> {}
 
 }
