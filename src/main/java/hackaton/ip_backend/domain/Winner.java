@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Table(name = "Winner")
-@Entity
+@Entity(name = "Winner")
 @Getter
 @Builder
 @NoArgsConstructor

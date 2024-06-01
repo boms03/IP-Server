@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Table(name = "Voter")
-@Entity
+@Entity(name = "Voter")
 @Getter
 @Builder
 @NoArgsConstructor

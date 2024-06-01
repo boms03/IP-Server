@@ -1,6 +1,7 @@
 package hackaton.ip_backend.service.impl;
 
 import hackaton.ip_backend.domain.Member;
+import hackaton.ip_backend.domain.enums.Role;
 import hackaton.ip_backend.dto.request.SignDto;
 import hackaton.ip_backend.repository.MemberRepository;
 import hackaton.ip_backend.service.MemberService;
@@ -29,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
                 .name(name)
                 .email(email)
                 .password(SHA256.encrypt(password))
-                .role("ROLE_USER")
+                .role(Role.ROLE_USER)
                 .build();
 
         memberRepository.save(member);

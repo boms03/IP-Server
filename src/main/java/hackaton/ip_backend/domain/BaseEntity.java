@@ -34,5 +34,5 @@ public abstract class BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", nullable = false)
-	private Status status;
+	private Status status = Status.ACTIVE;
 }

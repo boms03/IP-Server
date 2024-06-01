@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
-@Entity
+@Entity(name = "Member")
 @Getter
 @Builder
 @Table(name = "Member")
