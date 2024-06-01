@@ -1,6 +1,5 @@
 package hackaton.ip_backend.domain;
 
-
 import hackaton.ip_backend.domain.enums.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,4 +37,13 @@ public class Member extends BaseEntity{
 
     @Column(name = "ip_amount", nullable = false)
     private Long ipAmount;
+
+    public Member update(String nickname)
+    {
+        if(nickname != null)
+        {
+            this.name=nickname;
+        }
+        return this;
+    }
 }
