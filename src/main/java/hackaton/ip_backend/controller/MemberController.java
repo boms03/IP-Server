@@ -2,14 +2,20 @@ package hackaton.ip_backend.controller;
 
 import hackaton.ip_backend.common.response.BaseResponse;
 import hackaton.ip_backend.dto.request.MemberRequestDto;
+import hackaton.ip_backend.dto.response.IpDto;
 import hackaton.ip_backend.dto.response.MemberResponseDto;
 import hackaton.ip_backend.service.MemberService;
 import hackaton.ip_backend.service.WinnerService;
 import hackaton.ip_backend.util.JWTUtil;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +27,9 @@ public class MemberController {
 
     @PostMapping("/signup")
     @Operation(summary="회원가입")
+    @ApiResponse(
+            responseCode = "200",
+            description = "OK")
     public void joinProcess(@RequestBody MemberRequestDto.SignUpDto signUpDto) {
         memberService.createAccount(signUpDto);
     }
@@ -35,7 +44,8 @@ public class MemberController {
 
     @PatchMapping("/setting/nickname")
     @Operation(summary = "닉네임 수정")
-    public BaseResponse<String> updateNickName(HttpServletRequest request, @RequestBody String nickname)
+    public BaseResponse<String> updateNickName(HttpServletRequest request, @Schema(name = "nickname", description = "수정할 닉네임", example = "change")
+    @RequestParam(name = "nickname") String nickname)
     {
         Long id = jwtUtil.getUserId(request);
         memberService.updateNickName(id, nickname);
@@ -48,4 +58,8 @@ public class MemberController {
         Long id = jwtUtil.getUserId(request);
         return memberService.getLeafInfo(id);
     }
+
+    //============================================ 스웨거 결과 문서 ==============================================
+
+    private static class SurveyListResponse extends BaseResponse<List<IpDto.SurveyDto>> {}
 }
