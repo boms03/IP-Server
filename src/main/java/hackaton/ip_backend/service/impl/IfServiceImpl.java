@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import hackaton.ip_backend.domain.Member;
 import hackaton.ip_backend.domain.Voter;
+import hackaton.ip_backend.domain.enums.Status;
 import hackaton.ip_backend.repository.MemberRepository;
 import hackaton.ip_backend.service.SurveyService;
 import org.springframework.data.domain.PageRequest;
@@ -34,7 +35,7 @@ public class IfServiceImpl implements IfService {
 	public List<IpDto.SurveyDto> getSurveyAll(int pageNumber) {
 		Pageable pageable = PageRequest.of(pageNumber, 10);
 
-		List<Survey> entities = surveyRepository.findAllByOrderByCreatedAtDesc(pageable);
+		List<Survey> entities = surveyRepository.findAllByStatusOrderByCreatedAtDesc(pageable, Status.ACTIVE);
 
 		return toSurveyDtoList(entities);
 	}
@@ -43,7 +44,7 @@ public class IfServiceImpl implements IfService {
 	public List<IpDto.SurveyDto> getSurveyCategory(String category, int pageNumber) {
 		Pageable pageable = PageRequest.of(pageNumber, 10);
 
-		List<Survey> entities = surveyRepository.findAllByCategoryOrderByCreatedAtDesc(Category.valueOf(category), pageable);
+		List<Survey> entities = surveyRepository.findAllByCategoryAndStatusOrderByCreatedAtDesc(Category.valueOf(category), pageable, Status.ACTIVE);
 
 		return toSurveyDtoList(entities);
 	}
