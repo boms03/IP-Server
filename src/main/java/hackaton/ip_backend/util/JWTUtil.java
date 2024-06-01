@@ -47,7 +47,7 @@ public class JWTUtil {
     @return String
      */
     public String getJwt(HttpServletRequest request){
-        return request.getHeader("Authorization");
+        return request.getHeader("Authorization").split(" ")[1];
     }
 
     /*
