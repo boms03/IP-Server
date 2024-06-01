@@ -18,6 +18,7 @@ import lombok.*;
 @Table(name = "Survey")
 @Entity(name = "Survey")
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -54,4 +55,12 @@ public class Survey extends BaseEntity {
 
 	@Column(name = "end_at", nullable = false)
 	private LocalDate endAt;
+
+	@Column(name = "first_percentage")
+	private Float first_percentage;
+
+	@Column(name = "second_percentage")
+	private Float second_percentage;
+
+
 }

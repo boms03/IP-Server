@@ -94,10 +94,6 @@ public class IfServiceImpl implements IfService {
 	public void postVote(Long userId, Long surveyId, int vote) {
 		Member member = getMember(userId);
 		Survey survey = surveyRepository.findById(surveyId).orElseThrow(()-> new BaseException(BaseResponseStatus.SURVEY_NOT_FOUND));
-		if(member.getIpAmount()<survey.getIpAmount()){
-			throw new BaseException(BaseResponseStatus.UNEXPECTED_ERROR);
-		}
-		member.setIpAmount(member.getIpAmount()-survey.getIpAmount());
 		Voter voter = Voter.builder()
 				.member(member)
 				.survey(survey)
