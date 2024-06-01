@@ -5,9 +5,9 @@ import java.util.List;
 import hackaton.ip_backend.dto.response.IpDto;
 
 public interface IfService {
-	List<IpDto.SurveyDto> getSurveyAll(int pageNumber);
+	IpDto.PagingWrapper getSurveyAll(int pageNumber);
 
-	List<IpDto.SurveyDto> getSurveyCategory(String category, int pageNumber);
+	IpDto.PagingWrapper getSurveyCategory(String category, int pageNumber);
 
 	IpDto.SurveyDetailDto getSurveyDetail(Long surveyId);
 

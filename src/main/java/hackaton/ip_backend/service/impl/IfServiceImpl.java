@@ -32,21 +32,39 @@ public class IfServiceImpl implements IfService {
 	private final MemberRepository memberRepository;
 
 	@Override
-	public List<IpDto.SurveyDto> getSurveyAll(int pageNumber) {
+	public IpDto.PagingWrapper getSurveyAll(int pageNumber) {
 		Pageable pageable = PageRequest.of(pageNumber, 10);
 
+		Integer count = surveyRepository.countAllBy();
 		List<Survey> entities = surveyRepository.findAllByStatusOrderByCreatedAtDesc(pageable, Status.ACTIVE);
 
-		return toSurveyDtoList(entities);
+		List<IpDto.SurveyDto> list = toSurveyDtoList(entities);
+
+		return IpDto.PagingWrapper.builder()
+				.listSize(10)
+				.totalElements(count)
+				.totalPage((count / 10) + 1)
+				.surveyList(list)
+				.isLast((count - 10 * (pageNumber + 1)) < 0)
+				.build();
 	}
 
 	@Override
-	public List<IpDto.SurveyDto> getSurveyCategory(String category, int pageNumber) {
+	public IpDto.PagingWrapper getSurveyCategory(String category, int pageNumber) {
 		Pageable pageable = PageRequest.of(pageNumber, 10);
 
+		Integer count = surveyRepository.countAllBy();
 		List<Survey> entities = surveyRepository.findAllByCategoryAndStatusOrderByCreatedAtDesc(Category.valueOf(category), pageable, Status.ACTIVE);
 
-		return toSurveyDtoList(entities);
+		List<IpDto.SurveyDto> list = toSurveyDtoList(entities);
+
+		return IpDto.PagingWrapper.builder()
+				.listSize(10)
+				.totalElements(count)
+				.totalPage((count / 10) + 1)
+				.surveyList(list)
+				.isLast((count - 10 * (pageNumber + 1)) < 0)
+				.build();
 	}
 
 	@Override

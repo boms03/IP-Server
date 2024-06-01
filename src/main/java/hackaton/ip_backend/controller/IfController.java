@@ -37,7 +37,7 @@ public class IfController {
 							implementation =
 									SurveyListResponse.class)))
 	@GetMapping("/list")
-	public BaseResponse<List<IpDto.SurveyDto>> getSurveyAll(
+	public BaseResponse<IpDto.PagingWrapper> getSurveyAll(
 			@Schema(name = "pageNumber", description = "페이지 번호 (0번이 첫번째 페이지)", example = "0")
 			@RequestParam(name = "pageNumber") int pageNumber
 	) {
@@ -57,7 +57,7 @@ public class IfController {
 							implementation =
 									SurveyListResponse.class)))
 	@GetMapping("/category/list")
-	public BaseResponse<List<IpDto.SurveyDto>> getSurveyCategory(
+	public BaseResponse<IpDto.PagingWrapper> getSurveyCategory(
 			@Schema(name = "category", description = "NONE(없음), ENTER(연예), ECONOMY(경제/주식), SPORT(스포츠), DAILY(일상)", example = "SPORT")
 			@RequestParam(name = "category") String category,
 			@Schema(name = "pageNumber", description = "페이지 번호 (0번이 첫번째 페이지)", example = "0")
@@ -115,8 +115,8 @@ public class IfController {
 
 	//============================================ 스웨거 결과 문서 ==============================================
 
-	private static class SurveyListResponse extends BaseResponse<List<IpDto.SurveyDto>> {}
+	private static class SurveyListResponse extends BaseResponse<IpDto.PagingWrapper> {}
 
-	private static class SurveyDetailResponse extends BaseResponse<IpDto.SurveyDetailDto> {}
+	private static class SurveyDetailResponse extends BaseResponse<IpDto.PagingWrapper> {}
 
 }
