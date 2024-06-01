@@ -2,7 +2,7 @@ package hackaton.ip_backend.service.impl;
 
 import hackaton.ip_backend.domain.Member;
 import hackaton.ip_backend.domain.enums.Role;
-import hackaton.ip_backend.dto.request.SignDto;
+import hackaton.ip_backend.dto.request.MemberRequestDto;
 import hackaton.ip_backend.repository.MemberRepository;
 import hackaton.ip_backend.service.MemberService;
 import hackaton.ip_backend.util.JWTUtil;
@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
     private final JWTUtil jwtUtil;
 
     @Override
-    public void createAccount(SignDto.SignUpDto signUpDto) {
+    public void createAccount(MemberRequestDto.SignUpDto signUpDto) {
         String name = signUpDto.getName();
         String email = signUpDto.getEmail();
         String password = signUpDto.getPassword();
@@ -30,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
                 .name(name)
                 .email(email)
                 .password(SHA256.encrypt(password))
+                .ipAmount(10L)
                 .role(Role.ROLE_USER)
                 .build();
 
@@ -37,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String signIn(SignDto.SignInDto signInDto) {
+    public String signIn(MemberRequestDto.SignInDto signInDto) {
         String email = signInDto.getEmail();
         String password = signInDto.getPassword();
         String encryptedPassword = SHA256.encrypt(password);
@@ -47,10 +48,18 @@ public class MemberServiceImpl implements MemberService {
 
         if(encryptedPassword.equals(member.getPassword()))
         {
-            return jwtUtil.createToken(email);
+            return jwtUtil.createToken(member.getId());
         }
         else {
             return null;
         }
+    }
+
+    @Override
+    public void updateNickName(Long id, String nickname){
+        Optional<Member> optionalMember = memberRepository.findById(id);
+        Member member = optionalMember.orElseThrow(()-> new RuntimeException("Member not found"));
+
+        member.update(nickname);
     }
 }

@@ -24,7 +24,7 @@ public class Product {
 	private int id;
 
 	@Column(name = "ip_amount", nullable = false)
-	private int ipAmount;
+	private Long ipAmount;
 
 	@Column(name = "price", nullable = false)
 	private int price;
