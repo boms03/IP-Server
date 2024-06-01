@@ -1,7 +1,7 @@
 package hackaton.ip_backend.controller;
 
 import hackaton.ip_backend.dto.response.MemberResponseDto;
-import hackaton.ip_backend.service.PurchaseService;
+import hackaton.ip_backend.service.ProductService;
 import hackaton.ip_backend.util.JWTUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PurchaseController {
 
-    private final PurchaseService purchaseService;
+    private final ProductService purchaseService;
     private final JWTUtil jwtUtil;
 
     @PostMapping("mypage/market")
