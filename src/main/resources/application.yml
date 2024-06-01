@@ -1,3 +1,17 @@
+version: 1.1.0
+server:
+  port: 8080
+  address: 0.0.0.0
 spring:
   application:
     name: IP_Backend
+  jwt:
+    secret: vmfhNAaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaadmksndisnobbb
+  config:
+    import:
+      - classpath:/resource-local/application-local.yml
+      - classpath:/resource-dev/application-dev.yml
+  profiles:
+    group:
+      local: local
+      dev: dev
