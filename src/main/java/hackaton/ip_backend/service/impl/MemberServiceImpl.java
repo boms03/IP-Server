@@ -1,7 +1,5 @@
 package hackaton.ip_backend.service.impl;
 
-import hackaton.ip_backend.common.exceptions.BaseException;
-import hackaton.ip_backend.common.response.BaseResponseStatus;
 import hackaton.ip_backend.domain.Member;
 import hackaton.ip_backend.dto.request.SignDto;
 import hackaton.ip_backend.repository.MemberRepository;
@@ -46,12 +44,11 @@ public class MemberServiceImpl implements MemberService {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         Member member = optionalMember.orElseThrow(()-> new RuntimeException("Member not found"));
 
-        if(encryptedPassword == member.getPassword())
+        if(encryptedPassword.equals(member.getPassword()))
         {
             return jwtUtil.createToken(email);
         }
         else {
-            new BaseException(BaseResponseStatus.UNEXPECTED_ERROR);
             return null;
         }
     }
