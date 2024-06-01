@@ -2,6 +2,10 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: IP_Backend
+  jwt:
+    secret: vmfhNAaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaadmksndisnobbb
   config:
     import:
       - classpath:/resource-local/application-local.yml

@@ -4,11 +4,11 @@ import hackaton.ip_backend.dto.request.SignDto;
 import hackaton.ip_backend.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -16,9 +16,14 @@ public class MemberController {
 
     @PostMapping("/signup")
     @Operation(summary="회원가입")
-    public String joinProcess(@RequestBody SignDto.SignUpDto signUpDto) {
+    public void joinProcess(@RequestBody SignDto.SignUpDto signUpDto) {
         memberService.createAccount(signUpDto);
-        return "ok";          //나중에 exception 처리 후 수정
+    }
+
+    @PostMapping("/signin")
+    @Operation(summary="로그인")
+    public String signInProcess(@RequestBody SignDto.SignInDto signInDto) {
+        return memberService.signIn(signInDto);
     }
 
 }

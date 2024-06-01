@@ -13,4 +13,12 @@ public class SignDto {
 
         String password;
     }
+
+    @Getter
+    @Builder
+    public static class SignInDto {
+        String email;
+
+        String password;
+    }
 }
