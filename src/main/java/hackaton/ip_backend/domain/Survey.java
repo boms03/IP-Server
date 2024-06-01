@@ -18,8 +18,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table
-@Entity
+@Table(name = "Survey")
+@Entity(name = "Survey")
 @Getter
 @Builder
 @AllArgsConstructor
