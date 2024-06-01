@@ -1,7 +1,7 @@
+version: 1.0.0
 server:
   port: 8080
   address: 0.0.0.0
-
 spring:
   config:
     import:
