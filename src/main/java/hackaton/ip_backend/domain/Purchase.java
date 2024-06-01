@@ -1,7 +1,10 @@
 package hackaton.ip_backend.domain;
 
+import org.hibernate.annotations.Fetch;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,11 +28,11 @@ public class Purchase extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Member_id", referencedColumnName = "id", nullable = false)
 	private Member member;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Product_id", referencedColumnName = "id", nullable = false)
 	private Product product;
 
