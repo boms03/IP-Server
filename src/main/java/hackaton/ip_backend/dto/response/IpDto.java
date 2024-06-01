@@ -60,7 +60,7 @@ public class IpDto {
 		private String prize;
 
 		@Schema(name = "isIp", description = "투표에 걸린 것이 잎인지 상품인지 true면 잎 false면 상품", example = "true")
-		private Boolean isIp;
+		private boolean isIp;
 
 		@Schema(name = "endAt", description = "종료일 (시간은 무조건 23시59분)", example = "YYYY-MM-DD")
 		private LocalDate endAt;
