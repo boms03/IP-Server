@@ -25,16 +25,6 @@ public class SurveyController {
 
     @PostMapping()
     @Operation(summary = "투표 생성")
-    @ApiResponse(
-            responseCode = "201",
-            description = "CREATED",
-            content =
-            @Content(
-                    mediaType = "application/json",
-                    schema =
-                    @Schema(
-                            implementation =
-                                    BaseResponse.class)))
     public BaseResponse<String> createSurvey(
             HttpServletRequest request,
             @RequestBody
