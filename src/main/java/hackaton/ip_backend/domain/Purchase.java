@@ -1,6 +1,5 @@
 package hackaton.ip_backend.domain;
 
-import org.hibernate.annotations.Fetch;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -4,6 +4,7 @@ import hackaton.ip_backend.common.response.BaseResponse;
 import hackaton.ip_backend.dto.request.MemberRequestDto;
 import hackaton.ip_backend.dto.response.MemberResponseDto;
 import hackaton.ip_backend.service.MemberService;
+import hackaton.ip_backend.service.WinnerService;
 import hackaton.ip_backend.util.JWTUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberService memberService;
+    private final WinnerService winnerService;
     private final JWTUtil jwtUtil;
 
     @PostMapping("/signup")
@@ -25,8 +27,10 @@ public class MemberController {
 
     @PostMapping("/signin")
     @Operation(summary="로그인")
-    public String signInProcess(@RequestBody MemberRequestDto.SignInDto signInDto) {
-        return memberService.signIn(signInDto);
+    public BaseResponse<MemberResponseDto.SignNoticeDto> signInProcess(@RequestBody MemberRequestDto.SignInDto signInDto) {
+        String token = memberService.signIn(signInDto);
+        return new BaseResponse<>(winnerService.checkWin(token, signInDto.getEmail()));
+
     }
 
     @PatchMapping("/setting/nickname")

@@ -1,11 +1,5 @@
 package hackaton.ip_backend.domain;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Winner {
+public class Winner extends BaseEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -37,12 +31,4 @@ public class Winner {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Survey_id", referencedColumnName = "id", nullable = false)
 	private Survey survey;
-
-	@CreationTimestamp
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private LocalDateTime createdAt;
-
-	@UpdateTimestamp
-	@Column(name = "updated_at", nullable = false, updatable = false)
-	private LocalDateTime updatedAt;
 }
