@@ -28,7 +28,7 @@ public class SurveyServiceImpl implements SurveyService {
         Member member = getMember(userId);
 
         if(member.getIpAmount()<postSurveyDto.getIpAmount()){
-            throw new BaseException(BaseResponseStatus.UNEXPECTED_ERROR);
+            throw new BaseException(BaseResponseStatus.IP_NOT_ENOUGH);
         }
 
         member.setIpAmount(member.getIpAmount()-postSurveyDto.getIpAmount());
@@ -53,7 +53,7 @@ public class SurveyServiceImpl implements SurveyService {
 
     private Member getMember(Long userId) {
         return memberRepository.findById(userId).orElseThrow(
-                () -> new BaseException(BaseResponseStatus.UNEXPECTED_ERROR)
+                () -> new BaseException(BaseResponseStatus.MEMBER_NOT_FOUND)
         );
     }
 
