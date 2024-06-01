@@ -10,4 +10,6 @@ public interface IfService {
 	List<IpDto.SurveyDto> getSurveyCategory(String category, int pageNumber);
 
 	IpDto.SurveyDetailDto getSurveyDetail(Long surveyId);
+
+	void postVote(Long userId, Long surveyId, int vote);
 }

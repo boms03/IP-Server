@@ -14,6 +14,7 @@ import lombok.*;
 
 @Entity(name = "Member")
 @Getter
+@Setter
 @Builder
 @Table(name = "Member")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -38,4 +39,7 @@ public class Member extends BaseEntity{
 
     @Column(name = "ip_amount", nullable = false)
     private Long ipAmount;
+
+    @Column(name = "used_ip_amount", nullable = false)
+    private Long usedIpAmount;
 }
