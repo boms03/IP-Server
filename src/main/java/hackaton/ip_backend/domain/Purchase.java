@@ -34,7 +34,7 @@ public class Purchase extends BaseEntity{
 	private Product product;
 
 	@Column(name = "total_ip_amount", nullable = false)
-	private int totalIpAmount;
+	private Long totalIpAmount;
 
 	@Column(name = "total_price", nullable = false)
 	private int totalPrice;
