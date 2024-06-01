@@ -32,8 +32,7 @@ public class SurveyServiceImpl implements SurveyService {
         }
 
         member.setIpAmount(member.getIpAmount()-postSurveyDto.getIpAmount());
-        member.setUsedIpAmount(postSurveyDto.getIpAmount());
-
+        member.setUsedIpAmount(member.getUsedIpAmount()+postSurveyDto.getIpAmount());
 
         LocalDate endAt = parseEndAt(postSurveyDto.getEndAt());
 
