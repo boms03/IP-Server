@@ -29,7 +29,7 @@ public class IpDto {
 		private String secondOption;
 
 		@Schema(name = "ipAmount", description = "걸려있는 잎 갯수", example = "10")
-		private Integer ipAmount;
+		private Long ipAmount;
 
 		@Schema(name = "prize", description = "상품", example = "상품 이름")
 		private String prize;
@@ -49,7 +49,7 @@ public class IpDto {
 		public void countVoters(int count) {
 			this.voteCount = count;
 		}
-		public void bindRewardType(@Nullable Integer ipAmount,@Nullable String prize) {
+		public void bindRewardType(@Nullable Long ipAmount,@Nullable String prize) {
 			if(ipAmount != null) {
 				this.ipAmount = ipAmount;
 				isIp = true;
@@ -81,7 +81,7 @@ public class IpDto {
 		private String secondOption;
 
 		@Schema(name = "ipAmount", description = "걸려있는 잎 갯수", example = "10")
-		private Integer ipAmount;
+		private Long ipAmount;
 
 		@Schema(name = "prize", description = "상품", example = "상품 이름")
 		private String prize;
@@ -95,7 +95,7 @@ public class IpDto {
 		@Schema(name = "voteCount", description = "투표 수", example = "10")
 		private Integer voteCount;
 
-		public void bindRewardType(@Nullable Integer ipAmount,@Nullable String prize) {
+		public void bindRewardType(@Nullable Long ipAmount,@Nullable String prize) {
 			if(ipAmount != null) {
 				this.ipAmount = ipAmount;
 				isIp = true;
