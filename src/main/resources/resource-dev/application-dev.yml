@@ -1,0 +1,36 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: IP_Backend
+  jpa:
+    database: mysql
+    properties:
+      hibernate:
+        format_sql: false
+        use_sql_comments: false
+        hbm2ddl:
+          auto: update
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    sql:
+      init:
+        platform: mysql
+        encoding: UTF-8
+cloud:
+  aws:
+    s3:
+      bucket: ip-service
+    stack:
+      auto: false
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ap-northeast-2
