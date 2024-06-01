@@ -38,6 +38,9 @@ public class Member extends BaseEntity{
     @Column(name = "ip_amount", nullable = false)
     private Long ipAmount;
 
+    @Column(name = "used_ip_amount", nullable = false)
+    private Long usedIpAmount;
+
     public Member update(String nickname)
     {
         if(nickname != null)

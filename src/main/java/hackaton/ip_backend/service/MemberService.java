@@ -1,6 +1,7 @@
 package hackaton.ip_backend.service;
 
 import hackaton.ip_backend.dto.request.MemberRequestDto;
+import hackaton.ip_backend.dto.response.MemberResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,4 +11,6 @@ public interface MemberService {
     String signIn(MemberRequestDto.SignInDto signInDto);
 
     void updateNickName(Long id, String nickname);
+
+    MemberResponseDto.LeafDto getLeafInfo(Long id);
 }

@@ -3,6 +3,7 @@ package hackaton.ip_backend.service.impl;
 import hackaton.ip_backend.domain.Member;
 import hackaton.ip_backend.domain.enums.Role;
 import hackaton.ip_backend.dto.request.MemberRequestDto;
+import hackaton.ip_backend.dto.response.MemberResponseDto;
 import hackaton.ip_backend.repository.MemberRepository;
 import hackaton.ip_backend.service.MemberService;
 import hackaton.ip_backend.util.JWTUtil;
@@ -31,6 +32,7 @@ public class MemberServiceImpl implements MemberService {
                 .email(email)
                 .password(SHA256.encrypt(password))
                 .ipAmount(10L)
+                .usedIpAmount(0L)
                 .role(Role.ROLE_USER)
                 .build();
 
@@ -61,5 +63,18 @@ public class MemberServiceImpl implements MemberService {
         Member member = optionalMember.orElseThrow(()-> new RuntimeException("Member not found"));
 
         member.update(nickname);
+    }
+
+    @Override
+    public MemberResponseDto.LeafDto getLeafInfo(Long id) {
+        Optional<Member> optionalMember = memberRepository.findById(id);
+        Member member = optionalMember.orElseThrow(()-> new RuntimeException("Member not found"));
+
+        MemberResponseDto.LeafDto leafDto = MemberResponseDto.LeafDto.builder()
+                .ipAmount(member.getIpAmount())
+                .usedIpAmount(member.getUsedIpAmount())
+                .build();
+
+        return leafDto;
     }
 }
