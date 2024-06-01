@@ -1,6 +1,9 @@
 package hackaton.ip_backend.dto.response;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import javax.print.attribute.standard.MediaSize;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Nullable;
@@ -10,6 +13,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 public class IpDto {
+
+	@Getter
+	@Builder
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class PagingWrapper{
+		@Schema(name = "listSize", description = "리스트 블록 사이즈")
+		private Integer listSize;
+
+		@Schema(name = "totalPage", description = "전체 페이지 사이즈")
+		private Integer totalPage;
+
+		@Schema(name = "totalElements", description = "전체 갯수")
+		private Integer totalElements;
+
+		@Schema(name = "isLast")
+		private Boolean isLast;
+
+		@Schema(name = "surveyList", description = "투표 리스트")
+		private List<SurveyDto> surveyList;
+	}
+
 	@Getter
 	@Builder
 	@AllArgsConstructor
@@ -35,7 +60,7 @@ public class IpDto {
 		private String prize;
 
 		@Schema(name = "isIp", description = "투표에 걸린 것이 잎인지 상품인지 true면 잎 false면 상품", example = "true")
-		private boolean isIp;
+		private Boolean isIp;
 
 		@Schema(name = "endAt", description = "종료일 (시간은 무조건 23시59분)", example = "YYYY-MM-DD")
 		private LocalDate endAt;
@@ -45,6 +70,8 @@ public class IpDto {
 
 		@Schema(name = "category", description = "NONE(없음), ENTER(연예), ECONOMY(경제/주식), SPORT(스포츠), DAILY(일상)")
 		private String category;
+
+
 
 		public void countVoters(int count) {
 			this.voteCount = count;
