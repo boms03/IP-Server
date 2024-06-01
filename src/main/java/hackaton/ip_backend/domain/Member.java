@@ -50,4 +50,5 @@ public class Member extends BaseEntity{
         }
         return this;
     }
+
 }
