@@ -94,6 +94,11 @@ public class IfServiceImpl implements IfService {
 	public void postVote(Long userId, Long surveyId, int vote) {
 		Member member = getMember(userId);
 		Survey survey = surveyRepository.findById(surveyId).orElseThrow(()-> new BaseException(BaseResponseStatus.SURVEY_NOT_FOUND));
+
+		if(voterRepository.findVoterByMemberAndSurvey(member,survey).isPresent()){
+			throw new BaseException(BaseResponseStatus.DUPLICATE_VOTE);
+		}
+
 		Voter voter = Voter.builder()
 				.member(member)
 				.survey(survey)
