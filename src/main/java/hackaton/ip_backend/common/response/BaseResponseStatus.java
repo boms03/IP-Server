@@ -18,9 +18,10 @@ public enum BaseResponseStatus {
     EMPTY_JWT(false, HttpStatus.UNAUTHORIZED.value(), "JWT를 입력해주세요."),
     INVALID_JWT(false, HttpStatus.UNAUTHORIZED.value(), "유효하지 않은 JWT입니다."),
     IP_NOT_ENOUGH(false, HttpStatus.BAD_REQUEST.value(), "보유 ip가 부족합니다."),
-
+    DUPLICATE_EMAIL(false, HttpStatus.CONFLICT.value(), "중복된 이메일입니다."),
+    DUPLICATE_NICKNAME(false, HttpStatus.CONFLICT.value(), "중복된 닉네임입니다."),
+    DUPLICATE_VOTE(false, HttpStatus.CONFLICT.value(), "중복된 투표입니다."),
     SURVEY_NOT_FOUND(false, HttpStatus.NOT_FOUND.value(), "Survey를 찾을 수 없습니다."),
-
     MEMBER_NOT_FOUND(false, HttpStatus.NOT_FOUND.value(), "Member를 찾을 수 없습니다.");
 
     private final boolean isSuccess;
