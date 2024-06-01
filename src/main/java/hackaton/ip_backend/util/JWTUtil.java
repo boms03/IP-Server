@@ -2,12 +2,16 @@ package hackaton.ip_backend.util;
 
 import hackaton.ip_backend.common.exceptions.BaseException;
 import hackaton.ip_backend.common.response.BaseResponseStatus;
+import hackaton.ip_backend.domain.enums.Role;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.Date;
 
 @Component
@@ -16,17 +20,25 @@ public class JWTUtil {
 
     @Value("${spring.jwt.secret}")
     private String SECRET;
-    private static final long EXPIRATION_TIME = 864_000_000;   //10일
 
-    public String createToken(String username) {
+    private Key key;
+
+    public JWTUtil(@Value("${spring.jwt.secret}")String secret) {
+
+
+        byte[] byteSecretKey = Decoders.BASE64.decode(secret);
+        key = Keys.hmacShaKeyFor(byteSecretKey);
+    }
+
+    public String createToken(Long id) {
         Date now = new Date();
         return Jwts.builder()
                 .setHeaderParam("type","jwt")
-                .claim("userIdx",username)
-                .claim("role",username)
+                .claim("userIdx",id)
+                .claim("role", Role.ROLE_USER)
                 .setIssuedAt(now)
                 .setExpiration(new Date(System.currentTimeMillis()+1*(1000*60*60*24*365)))
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -61,7 +73,22 @@ public class JWTUtil {
         }
 
         // 3. userIdx 추출
-        return claims.getBody().get("userIdx",Long.class);
+        Object userIdxObj = claims.getBody().get("userIdx");
+        if (userIdxObj == null) {
+            throw new BaseException(BaseResponseStatus.INVALID_JWT);
+        }
+
+        if (userIdxObj instanceof String) {
+            try {
+                return Long.parseLong((String) userIdxObj);
+            } catch (NumberFormatException e) {
+                throw new BaseException(BaseResponseStatus.INVALID_JWT);
+            }
+        } else if (userIdxObj instanceof Number) {
+            return ((Number) userIdxObj).longValue();
+        } else {
+            throw new BaseException(BaseResponseStatus.INVALID_JWT);
+        }
     }
 
     public String getRole(HttpServletRequest request) throws BaseException{

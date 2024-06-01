@@ -1,11 +1,13 @@
 package hackaton.ip_backend.service;
 
-import hackaton.ip_backend.dto.request.SignDto;
+import hackaton.ip_backend.dto.request.MemberRequestDto;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface MemberService {
-    void createAccount(SignDto.SignUpDto signUpDto);
+    void createAccount(MemberRequestDto.SignUpDto signUpDto);
 
-    String signIn(SignDto.SignInDto signInDto);
+    String signIn(MemberRequestDto.SignInDto signInDto);
+
+    void updateNickName(Long id, String nickname);
 }

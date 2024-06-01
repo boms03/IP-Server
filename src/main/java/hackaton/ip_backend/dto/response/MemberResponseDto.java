@@ -3,7 +3,7 @@ package hackaton.ip_backend.dto.response;
 import lombok.Builder;
 import lombok.Getter;
 
-public class SignDto {
+public class MemberResponseDto {
 
     @Getter
     @Builder
