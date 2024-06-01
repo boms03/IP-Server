@@ -25,6 +25,7 @@ public class SwaggerConfig {
 
 		SecurityScheme securityScheme = new SecurityScheme()
 				.type(SecurityScheme.Type.HTTP)
+				.scheme("bearer")
 				.bearerFormat(HttpHeaders.AUTHORIZATION)
 				.in(SecurityScheme.In.HEADER)
 				.name(HttpHeaders.AUTHORIZATION);
@@ -33,7 +34,7 @@ public class SwaggerConfig {
 		requirement.addList(HttpHeaders.AUTHORIZATION);
 
 		return new OpenAPI()
-				.components(new Components())
+				.components(new Components().addSecuritySchemes(HttpHeaders.AUTHORIZATION, securityScheme))
 				.addSecurityItem(requirement)
 				.info(info);
 	}
