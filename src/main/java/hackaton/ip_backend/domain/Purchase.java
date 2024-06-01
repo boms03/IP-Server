@@ -13,13 +13,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "Order")
-@Entity
+@Table(name = "Purchase")
+@Entity(name = "Purchase")
 @Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order extends BaseEntity{
+public class Purchase extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
