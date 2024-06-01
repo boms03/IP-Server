@@ -27,6 +27,14 @@ public class SurveyServiceImpl implements SurveyService {
 
         Member member = getMember(userId);
 
+        if(member.getIpAmount()<postSurveyDto.getIpAmount()){
+            throw new BaseException(BaseResponseStatus.UNEXPECTED_ERROR);
+        }
+
+        member.setIpAmount(member.getIpAmount()-postSurveyDto.getIpAmount());
+        member.setUsedIpAmount(postSurveyDto.getIpAmount());
+
+
         LocalDate endAt = parseEndAt(postSurveyDto.getEndAt());
 
         Survey survey = buildSurvey(postSurveyDto, member, endAt);

@@ -26,8 +26,13 @@ public class SurveyController {
     private final SurveyService surveyService;
     private final JWTUtil jwtUtil;
 
+
     @PostMapping()
-    @Operation(summary = "투표 생성")
+    @Operation(summary = "투표 생성", description = "String 반환")
+    @ApiResponse(
+            responseCode = "201",
+            description = "CREATED"
+    )
     public BaseResponse<String> createSurvey(
             HttpServletRequest request,
             @RequestBody
