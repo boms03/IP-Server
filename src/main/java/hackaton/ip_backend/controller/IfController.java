@@ -2,10 +2,10 @@ package hackaton.ip_backend.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import hackaton.ip_backend.dto.response.SurveyResponseDto;
+import hackaton.ip_backend.util.JWTUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.*;
 
 import hackaton.ip_backend.common.response.BaseResponse;
 import hackaton.ip_backend.dto.response.IpDto;
@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class IfController {
 
 	private final IfService ifService;
+	private final JWTUtil jwtUtil;
 
 	//모든 Survey
 	@Operation(summary = "모든 투표 리스트 조회 (페이징)")
@@ -85,9 +86,37 @@ public class IfController {
 		return new BaseResponse<>(ifService.getSurveyDetail(surveyId));
 	}
 
+
+	@PostMapping()
+	@Operation(summary = "투표하기")
+	@ApiResponse(
+			responseCode = "201",
+			description = "CREATED",
+			content =
+			@Content(
+					mediaType = "application/json",
+					schema =
+					@Schema(
+							implementation =
+									BaseResponse.class)))
+	public BaseResponse<String> postVote(
+			HttpServletRequest request,
+			@Schema(name = "surveyId", description = "투표 아이디", example = "4")
+			@RequestParam(name = "surveyId") Long surveyId,
+			@RequestBody
+			hackaton.ip_backend.dto.request.IpDto.PostIpDto postIpDto
+	) {
+		Long id = jwtUtil.getUserId(request);
+
+		ifService.postVote(id,surveyId,postIpDto.getVote());
+		return new BaseResponse<>("투표 완료");
+	}
+
+
 	//============================================ 스웨거 결과 문서 ==============================================
 
 	private static class SurveyListResponse extends BaseResponse<List<IpDto.SurveyDto>> {}
 
 	private static class SurveyDetailResponse extends BaseResponse<IpDto.SurveyDetailDto> {}
+
 }

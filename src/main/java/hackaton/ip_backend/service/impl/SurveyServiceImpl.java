@@ -34,14 +34,14 @@ public class SurveyServiceImpl implements SurveyService {
         surveyRepository.save(survey);
     }
 
-/*    @Override
+    @Override
     public SurveyResponseDto.GetSurveyDto getSurvey(Long userId) {
         Member member = getMember(userId);
         return SurveyResponseDto.GetSurveyDto.builder()
                 .nickname(member.getName())
                 .ipAmount(member.getIpAmount())
                 .build();
-    }*/
+    }
 
     private Member getMember(Long userId) {
         return memberRepository.findById(userId).orElseThrow(

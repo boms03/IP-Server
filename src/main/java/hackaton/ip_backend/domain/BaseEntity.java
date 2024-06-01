@@ -2,6 +2,7 @@ package hackaton.ip_backend.domain;
 
 import java.time.LocalDateTime;
 
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,6 +21,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @MappedSuperclass
 @NoArgsConstructor
+@Setter
 @EntityListeners({AuditingEntityListener.class})
 public abstract class BaseEntity {
 
