@@ -50,7 +50,7 @@ public class Survey extends BaseEntity {
 	private String secondOption;
 
 	@Column(name = "ip_amount")
-	private int ipAmount;
+	private Long ipAmount;
 
 	@Column(name = "prize", length = 100)
 	private String prize;
