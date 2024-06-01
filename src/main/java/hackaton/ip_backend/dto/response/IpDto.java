@@ -2,6 +2,8 @@ package hackaton.ip_backend.dto.response;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
@@ -34,6 +36,7 @@ public class IpDto {
 		@Schema(name = "prize", description = "상품", example = "상품 이름")
 		private String prize;
 
+		@JsonProperty("isIp")
 		@Schema(name = "isIp", description = "투표에 걸린 것이 잎인지 상품인지 true면 잎 false면 상품", example = "true")
 		private boolean isIp;
 
@@ -86,6 +89,7 @@ public class IpDto {
 		@Schema(name = "prize", description = "상품", example = "상품 이름")
 		private String prize;
 
+		@JsonProperty("isIp")
 		@Schema(name = "isIp", description = "투표에 걸린 것이 잎인지 상품인지 true면 잎 false면 상품", example = "true")
 		private boolean isIp;
 
