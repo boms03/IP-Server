@@ -2,6 +2,16 @@
 
 <br>
 
+![Pasted Graphic 1](https://github.com/boms03/IP-Server/assets/5876849/6f34c492-1bc4-4d66-94bd-cd6c507ccd2b)
+
+![Pasted Graphic 2](https://github.com/boms03/IP-Server/assets/5876849/011e9877-33b4-4f38-b290-5187b32993a8)
+
+![Pasted Graphic 4](https://github.com/boms03/IP-Server/assets/5876849/f044d342-5960-4710-a245-56ecb248511f)
+
+![Pasted Graphic 6](https://github.com/boms03/IP-Server/assets/5876849/73e25e88-26db-4190-a77d-5eba41a74d9a)
+
+![Pasted Graphic 3](https://github.com/boms03/IP-Server/assets/5876849/c323ce3f-7768-4dd7-b5c4-70773a824714)
+
 ## Git Convention
 
 ### Commit Convention
